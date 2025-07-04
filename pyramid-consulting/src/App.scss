@@ -98,6 +98,16 @@ body {
   }
 }
 
+// === Added: Tight Section Spacing for Home Page use ===
+.section--tight {
+  padding-bottom: 1.2rem !important;
+}
+
+.section--tight-top {
+  padding-top: 1.5rem !important;
+}
+// =======================================================
+
 .max-width {
   max-width: 1200px;
   margin: 0 auto;
@@ -298,7 +308,108 @@ body {
   }
 }
 
-// 10. Footer
+// 10. Navbar (Responsive Integrated)
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background: #18408b;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    img {
+      height: 44px;
+      margin-right: 8px;
+      border-radius: 8px; // Optional: for a smooth look
+    }
+    span {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+  }
+  .navbar-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2.2rem;
+    color: #fff;
+    cursor: pointer;
+    @media (max-width: 900px) {
+      display: block;
+      margin-left: 1rem;
+    }
+  }
+  .navbar-links {
+    display: flex;
+    gap: 2.2rem;
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      position: relative;
+      transition: color 0.16s;
+      &.active, &:hover {
+        color: #ffc20e;
+      }
+      &.active::after {
+        content: "";
+        display: block;
+        margin: 0 auto;
+        margin-top: 0.2rem;
+        width: 70%;
+        height: 2px;
+        background: #ffc20e;
+        border-radius: 1px;
+      }
+    }
+  }
+}
+
+// Hamburger responsive styles
+@media (max-width: 900px) {
+  .navbar {
+    flex-wrap: wrap;
+    padding: 1rem 1.1rem;
+    .navbar-logo {
+      flex: 1 1 100%;
+      margin-bottom: 0.7rem;
+    }
+    .navbar-links {
+      width: 100%;
+      flex-direction: column;
+      gap: 0.2rem;
+      background: #17407b;
+      border-radius: 0 0 1.1rem 1.1rem;
+      position: absolute;
+      top: 65px;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      display: none;
+      a {
+        padding: 1rem 0;
+        font-size: 1.1rem;
+        text-align: left;
+        border-bottom: 1px solid #1d4d7b30;
+        &:last-child { border-bottom: none; }
+      }
+    }
+    .navbar-links.open {
+      display: flex;
+    }
+  }
+}
+
+// 11. Footer
 footer {
   background: $primary;
   color: #fff;
@@ -311,8 +422,34 @@ footer {
   border-top-right-radius: $radius-xl;
 }
 
+// 12. General Mobile/Tablet Responsive Grids & Section Paddings
+@media (max-width: 900px) {
+  .about {
+    grid-template-columns: 1fr !important;
+  }
+  .services-grid, .pillars, .whyus-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .partners-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact-flex {
+    flex-direction: column !important;
+  }
+  .section, .services-section {
+    padding: 2.2rem 0.8rem !important;
+  }
+  .navbar {
+    .navbar-logo img {
+      height: 36px;
+    }
+  }
+}
+
 @media (max-width: 600px) {
   .hero h1 { font-size: 2rem; }
   .section-title { font-size: 1.3rem; }
-  .pillars, .services-grid, .whyus-grid { grid-template-columns: 1fr !important; }
+  .services-hero-title { font-size: 1.3rem; }
+  .services-hero-sub { font-size: 1rem; }
 }
